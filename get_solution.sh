@@ -4,10 +4,11 @@ if [[ "$1" == "all" ]]
 then
     for filename in src/*; do
         exe_file=${filename%.cpp}
+        exe_file=${exe_file#src/}
         input_file=inputs/${exe_file#src/}.txt
         rm -f $exe_file
         g++ -o $exe_file  $filename
-        echo ${exe_file#src/}
+        echo "$exe_file"
         ./$exe_file $input_file
     done
 else
