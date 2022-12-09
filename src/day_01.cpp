@@ -17,7 +17,7 @@ vector<int> parse(string inFileName)
     {
         string calories;
         int sum_calories = 0;
-        while (inFile)
+        while (!inFile.eof())
         {
             getline(inFile, calories);
 
