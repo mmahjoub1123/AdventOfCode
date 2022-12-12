@@ -6,13 +6,28 @@
 
 using namespace std;
 
-vector<pair<char, char>> parse(string inFileName)
+// Split the string separated by delimiter del
+vector<string> tokenizer(string s, char del)
+{
+    vector<string> separator;
+    stringstream ss(s);
+    string word;
+    while (!ss.eof()) {
+        getline(ss, word, del);
+        separator.push_back(word);
+    }
+    return separator;
+}
+
+
+// Parse the input file
+vector<pair<char,char>> parse(string inFileName)
 {
     ifstream inFile;
 
     inFile.open(inFileName);
 
-    vector<pair<char, char>> rounds;
+    vector<pair<char,char>> rounds;
     string line;
 
     if (inFile.is_open())
@@ -20,8 +35,9 @@ vector<pair<char, char>> parse(string inFileName)
         while (!inFile.eof())
         {
             getline(inFile, line);
+            auto separator = tokenizer(line, ' ');
 
-            rounds.push_back(make_pair(line[0], line[2]));
+            rounds.push_back(make_pair(separator[0][0], separator[1][0]));
 
         }
         inFile.close();
@@ -34,6 +50,7 @@ vector<pair<char, char>> parse(string inFileName)
 }
 
 
+// Calcule the outcome score
 int calculateOutcome(char opponent, char leMe)
 {
     int score = 0;
@@ -53,6 +70,8 @@ int calculateOutcome(char opponent, char leMe)
     return score;
 }
 
+
+// What to play given the outcome and the opponent move
 char whatToPlay(char opponent, char outcome)
 {
     char shape = opponent;
@@ -90,7 +109,8 @@ char whatToPlay(char opponent, char outcome)
     return shape;
 }
 
-int part1(vector<pair<char, char>> rounds)
+
+int part1(vector<pair<char,char>> rounds)
 {
     map<char, int> shape_score;
     shape_score['X'] = 1;
@@ -107,7 +127,8 @@ int part1(vector<pair<char, char>> rounds)
     return total_score;
 }
 
-int part2(vector<pair<char, char>> rounds)
+
+int part2(vector<pair<char,char>> rounds)
 {
     map<char, int> shape_score;
     shape_score['A'] = 1;
@@ -133,7 +154,7 @@ int part2(vector<pair<char, char>> rounds)
 
 int main(int argc, char **argv)
 {
-    vector<pair<char, char>> rounds = parse(argv[1]);
+    vector<pair<char,char>> rounds = parse(argv[1]);
 
     cout << "Part 1: " << part1(rounds) << endl;
 
