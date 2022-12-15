@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<int> parse(string inFileName)
+vector<int> parse(const string& inFileName)
 {
     ifstream inFile;
 
@@ -42,12 +42,12 @@ vector<int> parse(string inFileName)
     return sum_calories_vector;
 }
 
-int part1(vector<int> sum_calories_vector)
+int part1(vector<int> &sum_calories_vector)
 {
     return *max_element(sum_calories_vector.begin(), sum_calories_vector.end());
 }
 
-int part2(vector<int> sum_calories_vector)
+int part2(vector<int> &sum_calories_vector)
 {
     sort(sum_calories_vector.begin(), sum_calories_vector.end(), greater<int>());
     return accumulate(sum_calories_vector.begin(), sum_calories_vector.begin()+3, 0);

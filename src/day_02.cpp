@@ -7,7 +7,7 @@
 using namespace std;
 
 // Split the string separated by delimiter del
-vector<string> tokenizer(string s, char del)
+vector<string> tokenizer(const string& s, char del)
 {
     vector<string> separator;
     stringstream ss(s);
@@ -21,7 +21,7 @@ vector<string> tokenizer(string s, char del)
 
 
 // Parse the input file
-vector<pair<char,char>> parse(string inFileName)
+vector<pair<char,char>> parse(const string& inFileName)
 {
     ifstream inFile;
 
@@ -110,7 +110,7 @@ char whatToPlay(char opponent, char outcome)
 }
 
 
-int part1(vector<pair<char,char>> rounds)
+int part1(vector<pair<char,char>> &rounds)
 {
     map<char, int> shape_score;
     shape_score['X'] = 1;
@@ -128,7 +128,7 @@ int part1(vector<pair<char,char>> rounds)
 }
 
 
-int part2(vector<pair<char,char>> rounds)
+int part2(vector<pair<char,char>> &rounds)
 {
     map<char, int> shape_score;
     shape_score['A'] = 1;

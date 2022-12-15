@@ -6,7 +6,7 @@
 using namespace std;
 
 // Parse the input file
-string parseFile(string inFileName)
+string parseFile(const string& inFileName)
 {
     ifstream inFile;
 
@@ -31,7 +31,7 @@ string parseFile(string inFileName)
 }
 
 
-int get_marker(string buffer, int nb_distinct)
+int get_marker(const string& buffer, int nb_distinct)
 {
     int index = 0;
     bool is_marker = true;
@@ -59,13 +59,13 @@ int get_marker(string buffer, int nb_distinct)
 }
 
 
-int part1(string buffer)
+int part1(const string& buffer)
 {
     return get_marker(parseFile(buffer), 4);
 }
 
 
-int part2(string buffer)
+int part2(const string& buffer)
 {
     return get_marker(parseFile(buffer), 14);
 }

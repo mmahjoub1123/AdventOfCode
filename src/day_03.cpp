@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<string> parse(string inFileName)
+vector<string> parse(const string& inFileName)
 {
     ifstream inFile;
 
@@ -40,7 +40,7 @@ int getPriority(char c)
     return priority;
 }
 
-int part1(vector<string> rucksacks)
+int part1(vector<string> &rucksacks)
 {
     int sum_priorities = 0;
     for (auto rucksack : rucksacks)
@@ -58,7 +58,7 @@ int part1(vector<string> rucksacks)
     }
     return sum_priorities;
 }
-int part2(vector<string> rucksacks)
+int part2(vector<string> &rucksacks)
 {
     int index = 0;
     int sum_priorities = 0;

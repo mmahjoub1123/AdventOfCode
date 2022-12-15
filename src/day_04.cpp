@@ -7,7 +7,7 @@
 using namespace std;
 
 // Split the string separated by delimiter del
-vector<string> tokenizer(string s, char del)
+vector<string> tokenizer(const string& s, char del)
 {
     vector<string> separator;
     stringstream ss(s);
@@ -21,7 +21,7 @@ vector<string> tokenizer(string s, char del)
 
 
 // Parse the input file
-auto parse(string inFileName)
+auto parse(const string& inFileName)
 {
     ifstream inFile;
 
@@ -83,7 +83,7 @@ bool doesRangeOverlap(pair<pair<int,int>,pair<int,int>> round)
 }
 
 
-int part1(vector<pair<pair<int,int>,pair<int,int>>> rounds)
+int part1(vector<pair<pair<int,int>,pair<int,int>>> &rounds)
 {
     int nb_contained_ranges = 0;
     for (auto round: rounds)
@@ -94,7 +94,7 @@ int part1(vector<pair<pair<int,int>,pair<int,int>>> rounds)
 }
 
 
-int part2(vector<pair<pair<int,int>,pair<int,int>>> rounds)
+int part2(vector<pair<pair<int,int>,pair<int,int>>> &rounds)
 {
     int nb_overlap = 0;
     for (auto round: rounds)

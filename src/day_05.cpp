@@ -13,10 +13,10 @@ struct Crate
     vector<stack<char>> m_crate_stacks;
     vector<string> m_stacks_movement;
 
-    void parse_stacks(vector<string> content_stacks);
-    tuple<int, int, int> parse_mouvement(string mvt);
-    void move_crates9000(vector<string> move_infos);
-    void move_crates9001(vector<string> move_infos);
+    void parse_stacks(vector<string> &content_stacks);
+    tuple<int, int, int> parse_mouvement(const string& mvt);
+    void move_crates9000(vector<string> &move_infos);
+    void move_crates9001(vector<string> &move_infos);
     string get_stack_tops();
 
     ~Crate();
@@ -36,12 +36,12 @@ Crate::~Crate()
 {}
 
 
-int get_nb_stacks(vector<string> content_stacks)
+int get_nb_stacks(vector<string> &content_stacks)
 {
     return content_stacks[content_stacks.size()-1].back() - '0';
 }
 
-void Crate::parse_stacks(vector<string> content_stacks)
+void Crate::parse_stacks(vector<string> &content_stacks)
 {
     int i = content_stacks.size()-2;
     int index_stack = 0;
@@ -61,7 +61,7 @@ void Crate::parse_stacks(vector<string> content_stacks)
 }
 
 
-tuple<int, int, int> Crate::parse_mouvement(string mvt)
+tuple<int, int, int> Crate::parse_mouvement(const string& mvt)
 {
     vector<int> int_extraction;
     stringstream ss;
@@ -90,7 +90,7 @@ tuple<int, int, int> Crate::parse_mouvement(string mvt)
 
 
 
-void Crate::move_crates9000(vector<string> move_infos)
+void Crate::move_crates9000(vector<string> &move_infos)
 {
     for (auto str_mvt : move_infos)
     {
@@ -105,7 +105,7 @@ void Crate::move_crates9000(vector<string> move_infos)
 }
 
 
-void Crate::move_crates9001(vector<string> move_infos)
+void Crate::move_crates9001(vector<string> &move_infos)
 {
     for (auto str_mvt : move_infos)
     {
@@ -137,7 +137,7 @@ string Crate::get_stack_tops()
 
 
 // Parse the input file
-pair<vector<string>, vector<string>> parseFile(string inFileName)
+pair<vector<string>, vector<string>> parseFile(const string& inFileName)
 {
     ifstream inFile;
 
@@ -181,7 +181,7 @@ pair<vector<string>, vector<string>> parseFile(string inFileName)
 }
 
 
-string part1(string input_file)
+string part1(const string& input_file)
 {
     auto stack_infos = parseFile(input_file);
     Crate crate = Crate(get_nb_stacks(stack_infos.first));
@@ -191,7 +191,7 @@ string part1(string input_file)
 }
 
 
-string part2(string input_file)
+string part2(const string& input_file)
 {
     auto stack_infos = parseFile(input_file);
     Crate crate = Crate(get_nb_stacks(stack_infos.first));
