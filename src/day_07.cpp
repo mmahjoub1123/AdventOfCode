@@ -54,8 +54,8 @@ int parse_and_run(std::string path) {
     std::cout << "The sum of the sizes of small sized directories is " << visit_and_sum_up(&tree->root) << "\n";
 
     size_t used = tree->root.recursive_size();
-    if (70000000 - used < 30000000) {
-        size_t goal = 30000000 - (70000000 - used);
+    size_t goal = 30000000 - (70000000 - used);
+    if (goal > 0) {
         std::cout << "The size of the directory that needs to be deleted is " << find_smallest_but_sufficient(&tree->root, goal) << "\n";
     }
 

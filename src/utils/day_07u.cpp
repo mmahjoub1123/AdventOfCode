@@ -62,15 +62,12 @@ size_t Directory::recursive_size() {
     // but libc++ has not implemented this view yet.
 
     // Sizes of files in this directory.
-    //auto fsz = files | values | views::common;
-
     auto fsz = accumulate(begin(files), end(files), 0, values_files);
+
     // Sizes of subdirectories in this directory.
-    //auto dsz = subdirs | values | views::transform(&Directory::recursive_size) | views::common;
     auto dsz = accumulate(begin(subdirs), end(subdirs), 0, values_dirs);
 
     // Sum up the sizes and return.
-    //recursive_size_ = reduce(fsz.begin(), fsz.end()) + reduce(dsz.begin(), dsz.end());
     recursive_size_ = fsz + dsz;
     return recursive_size_;
 }
@@ -149,11 +146,6 @@ size_t visit_and_sum_up(Directory *current) {
 
 size_t find_smallest_but_sufficient(Directory *current, size_t goal) {
     // Visit sub-directories, and filter out directories that are not large enough.
-    /*
-    auto dsz = current->subdirs | values | views::transform([goal](Directory *current) {
-        return find_smallest_but_sufficient(current, goal);
-    }) | views::filter([goal](size_t value) { return value >= goal; });
-    */
     vector<size_t> v_dsz;
     for (auto elt: current->subdirs)
     {

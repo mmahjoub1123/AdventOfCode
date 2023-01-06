@@ -1,5 +1,5 @@
 
-all: all day_01 day_02 day_03 day_04 day_05 day_06
+all: all day_01 day_02 day_03 day_04 day_05 day_06 day_07
 
 
 day_01: bday_01
@@ -8,7 +8,7 @@ day_01: bday_01
 
 day_02: bday_02
 	./day_02 inputs/day_02.txt
-	
+
 day_03: bday_03
 	./day_03 inputs/day_03.txt
 
@@ -21,13 +21,16 @@ day_05: bday_05
 day_06: bday_06
 	./day_06 inputs/day_06.txt
 
+day_07: bday_07
+	./day_07 inputs/day_07.txt
+
 
 bday_01: $(bday_01)
 	g++ -o day_01 src/day_01.cpp
 
 bday_02: $(bday_02)
 	g++ -o day_02 src/day_02.cpp
-	
+
 bday_03: $(bday_03)
 	g++ -o day_03 src/day_03.cpp
 
@@ -39,8 +42,11 @@ bday_05: $(bday_05)
 
 bday_06: $(bday_06)
 	g++ -o day_06 src/day_06.cpp
-	
+
+bday_07: $(bday_07)
+	g++ -o day_07 src/day_07.cpp
+
 clean:
-	rm -f *.o
+	rm -f *.o day_*
 
 .PHONY: all clean
